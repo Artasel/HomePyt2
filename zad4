@@ -1,0 +1,38 @@
+# Реализуйте выдачу случайного числа
+# не использовать random.randint и вообще библиотеку random
+# Можете использовать xor, биты, библиотеку time или datetime (миллисекунды или наносекунды) - для задания случайности
+# Учтите, что есть диапазон: от(минимальное) и до (максимальное)
+
+import time
+
+def Randomi(max, min = 0):
+    container = ""
+    lengthi = len(str(max))
+    while True:
+        i = -1
+        x = str(time.time())
+        if int(x[i]) <= lengthi and int(x[i]) >= len(str(min)):
+            lengthi = int(x[i])
+            break
+
+    prov = False
+    while True: 
+        j = 1
+        i = 0
+        x = str(time.time())
+        while i < len(x):
+            if x[i] == ".":
+                prov = True
+            if x[i] != "." and prov == True and j <= lengthi:
+                container += x[i]
+                j += 1
+            i += 1
+        if int(container) <= max and int(container) >= min:
+            break
+        else:
+            container = ""
+            prov = False
+    x = int(container)
+    return x
+
+print(f"{Randomi(min = 64, max = 86235)} это результат")

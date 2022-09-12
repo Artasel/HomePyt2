@@ -1,0 +1,37 @@
+# Палиндромом называется слово, которое в обе стороны читается одинаково: "шалаш", "кабак".
+# А еще есть палиндром числа - смысл также в том, чтобы число в обе стороны читалось одинаково, но есть одно "но".
+# Если перевернутое число не равно исходному, то они складываются и проверяются на палиндром еще раз.
+# Это происходит до тех пор, пока не будет найден палиндром.
+# Напишите такую программу, которая найдет палиндром введенного пользователем числа.
+
+def CheckNumber():
+    while True:
+        original = input("Введите число: ")
+        if original.isdigit():
+            original = int(original)
+            return original
+        else:
+            print("Неверный ввод")
+
+def InvertNumber(origin):
+    inverted = 0
+    while origin != 0:
+        inverted = inverted * 10 + (origin % 10)
+        origin //= 10
+    return inverted
+
+def CheckPolind(original, polind):
+    if original == polind:
+        print("Введен палиндром!!!")
+        return
+    else:
+        while original != polind:
+            original += polind
+            polind = InvertNumber(original)
+        print(f"{original} и {polind}-палиндромы! Палиндром найден!!!")
+        return
+
+x = CheckNumber()
+y = InvertNumber(x)
+
+CheckPolind(x, y)
